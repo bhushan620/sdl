@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inheritance</title>
+</head>
+<body>
+    <form action="" method="post">
+        <input type="radio"name="shape"value="triangle">Triangle
+        <input type="radio"name="shape"value="square">Square
+        <input type="radio"name="shape"value="circle">circle
+        <br><br>
+        <input type="Submit"value="Calculate Area of ">
+
+    </form>
+</body>
+</html>
+
+<?php 
+class Shape{
+    protected $name;
+    public function __construct($name){
+        $this->name=$name;
+    }
+    public function getName(){
+        return $this->name;
+    }
+    public function calculateArea(){
+        return 0;
+    }
+}
+
+class Triangle extends Shape{
+    private $base;
+    private $height;
+    public function __construct($base,$height){
+        parent::__construct('Triangle');
+        $this->base=$base;
+        $this->height=$height;
+    }
+    public function calculateArea(){
+        return 0.5*$this->base*$this->height;
+    }
+}
+
+class Square extends Shape{
+    private $side;
+    public function __construct($side){
+        parent::__construct('Square');
+        $this->side=$side;
+    }
+    public function calculateArea(){
+        return $this->side*$this->side;
+    }
+}
+
+class Circle extends Shape{
+    private $radius;
+    public function __construct($radius){
+        parent::__construct('Circle');
+        $this->radius=$radius;
+    }
+    public function calculateArea(){
+        return M_PI*$this->radius*$this->radius;
+    }
+}
+if(isset($_POST['shape'])){
+    $ss=$_POST['shape'];
+    switch ($ss){
+        case 'triangle':
+            $triangle= new Triangle(5,10);
+            echo "Area of ".$triangle->getName().":".$triangle->calculateArea();
+            break;
+        case 'square':
+            $square= new Square(2);
+            echo "Area of ".$square->getName().":".$square->calculateArea();
+            break;
+        case 'circle':
+            $circle = new Circle(2);
+            echo "Area of ".$circle->getName().":".$circle->calculateArea();
+            break;        
+    }
+
+}
+
+?>

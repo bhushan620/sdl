@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .invalid-feedback {
+            color: red;
+            display: none;
+        }
+
+        .btn {
+            width: 100%;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Facebook Registration</h1>
+        <form id="registrationForm" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" class="form-control" required>
+                <span class="error" id="firstNameError"></span>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" class="form-control" required>
+                <span class="error" id="lastNameError"></span>
+            </div>
+            <div class="form-group">
+                <label for="organization">Organization:</label>
+                <input type="text" id="organization" name="organization" class="form-control" required>
+                <span class="error" id="organizationError"></span>
+            </div>
+            <div class="form-group">
+                <label for="hobbies">Hobbies:</label>
+                <input type="text" id="hobbies" name="hobbies" class="form-control" required>
+                <span class="error" id="hobbiesError"></span>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+                <span class="error" id="emailError"></span>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+                <span class="error" id="passwordError"></span>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password:</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" required>
+                <span class="error" id="confirmPasswordError"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+        <div id="userDetails" style="display: none;">
+            <h2>User Details</h2>
+            <p><strong>First Name:</strong> <span id="displayFirstName"></span></p>
+            <p><strong>Last Name:</strong> <span id="displayLastName"></span></p>
+            <p><strong>Organization:</strong> <span id="displayOrganization"></span></p>
+            <p><strong>Hobbies:</strong> <span id="displayHobbies"></span></p>
+            <p><strong>Email:</strong> <span id="displayEmail"></span></p>
+        </div>
+    </div>
+    <script>
+        function validateForm() {
+            let valid = true;
+            let firstName = document.getElementById("firstName").value;
+            let lastName = document.getElementById("lastName").value;
+            let organization = document.getElementById("organization").value;
+            let hobbies = document.getElementById("hobbies").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirmPassword").value;
+            document.getElementById("firstNameError").innerText = "";
+            document.getElementById("lastNameError").innerText = "";
+            document.getElementById("organizationError").innerText = "";
+            document.getElementById("hobbiesError").innerText = "";
+            document.getElementById("emailError").innerText = "";
+            document.getElementById("passwordError").innerText = "";
+            document.getElementById("confirmPasswordError").innerText = "";
+
+            if (firstName === "") {
+                document.getElementById("firstNameError").innerText = "First name is required";
+                valid = false;
+            }
+
+            if (lastName === "") {
+                document.getElementById("lastNameError").innerText = "Last name is required";
+                valid = false;
+            }
+
+            if (organization === "") {
+                document.getElementById("organizationError").innerText = "Organization is required";
+                valid = false;
+            }
+
+            if (hobbies === "") {
+                document.getElementById("hobbiesError").innerText = "Hobbies are required";
+                valid = false;
+            }
+
+            const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById("emailError").innerText = "Invalid email format";
+                valid = false;
+            }
+
+            if (password.length < 6) {
+                document.getElementById("passwordError").innerText = "Password must be at least 6 characters";
+                valid = false;
+            }
+
+            if (confirmPassword !== password) {
+                document.getElementById("confirmPasswordError").innerText = "Passwords do not match";
+                valid = false;
+            }
+
+            if (valid) {
+                displayUserDetails(firstName, lastName, organization, hobbies, email);
+                return false; // Prevent form submission
+            } else {
+                return false;
+            }
+        }
+
+        function displayUserDetails(firstName, lastName, organization, hobbies, email) {
+            document.getElementById("displayFirstName").innerText = firstName;
+            document.getElementById("displayLastName").innerText = lastName;
+            document.getElementById("displayOrganization").innerText = organization;
+            document.getElementById("displayHobbies").innerText = hobbies;
+            document.getElementById("displayEmail").innerText = email;
+            document.getElementById("userDetails").style.display = "block";
+        }
+    </script>
+</body>
+</html>

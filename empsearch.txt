@@ -1,0 +1,76 @@
+//emp search
+
+//index.php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Search</title>
+ 
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 >Employee Search</h1>
+        <form action="search.php" method="post">
+            <div class="input-group" >
+                <input type="text" id="searchTerm" name="searchTerm" placeholder="Enter Employee Name" required >
+                <button type="submit" name="searchBtn" >Search</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+//search.php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Result</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 >Search Result</h1>
+        <?php
+        // Define the indexed array of Indian names
+        $indian_names = array(
+            "Aarav",
+            "Aarya",
+            "Aarushi",
+            "Aditi",
+            "Advait",
+            "Akshara",
+            "Amit",
+            "Ananya",
+            "Aniket",
+            "Anjali",
+            "Arjun",
+            "Avani",
+            "Chaitanya",
+            "Devesh",
+            "Diya",
+            "Ishaan",
+            "Kavya",
+            "Krishna",
+            "Manisha",
+            "Neha"
+        );
+
+        // Check if the form is submitted and the search term is provided
+        if(isset($_POST['searchBtn']) && !empty($_POST['searchTerm'])) {
+            $searchTerm = $_POST['searchTerm'];
+            // Search for the given name in the array
+            $result = in_array($searchTerm, $indian_names);
+            if($result) {
+                echo "<p class='text-success'>$searchTerm exists in the array.</p>";
+            } else {
+                echo "<p class='text-danger'>$searchTerm does not exist in the array.</p>";
+            }
+        } else {
+            echo "<p class='text-warning'>Please enter a name to search.</p>";
+      
+        }

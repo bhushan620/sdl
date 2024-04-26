@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Data Entry Form</title>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Restaurant Data Entry Form</h1>
+  <form>
+    <table>
+      <tr>
+        <th>Field</th>
+        <th>Value</th>
+      </tr>
+      <tr>
+        <td><label for="name">Restaurant Name:</label></td>
+        <td><input type="text" id="name" name="name" required></td>
+      </tr>
+      <tr>
+        <td><label for="cuisine">Cuisine Type:</label></td>
+        <td><input type="text" id="cuisine" name="cuisine" required></td>
+      </tr>
+      <tr>
+        <td><label for="address">Address:</label></td>
+        <td><textarea id="address" name="address" rows="3" required></textarea></td>
+      </tr>
+      <tr>
+        <td><label for="phone">Phone Number:</label></td>
+        <td><input type="tel" id="phone" name="phone" required></td>
+      </tr>
+      <tr>
+        <td><label for="email">Email:</label></td>
+        <td><input type="email" id="email" name="email" required></td>
+      </tr>
+      <tr>
+        <td colspan="2"><button type="submit">Submit</button></td>
+      </tr>
+    </table>
+  </form>
+
+  <div id="activity"></div>
+
+  <script>
+    const form = document.querySelector('form');
+    const activityDiv = document.getElementById('activity');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+      const name = document.getElementById('name').value;
+      const cuisine = document.getElementById('cuisine').value;
+      const address = document.getElementById('address').value;
+      const phone = document.getElementById('phone').value;
+      const email = document.getElementById('email').value;
+
+      activityDiv.innerHTML += `<p>Restaurant "${name}" submitted with cuisine type "${cuisine}".</p>`;
+      form.reset();
+    });
+
+    form.addEventListener('input', function() {
+      activityDiv.innerHTML += '<p>Form data modified.</p>';
+    });
+
+    form.addEventListener('reset', function() {
+      activityDiv.innerHTML += '<p>Form reset.</p>';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Associated Array</title>
+</head>
+<body>
+    <form action="" method="post">
+        <label for="room">Room</label>
+        <input type="text"id="room" name="room">
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
+
+<?php 
+ $arr=array(1=>"A",2=>"B",3=>"C");
+
+ if(!empty($_POST)){
+
+    $room =$_POST['room'];
+
+    foreach($arr as $x=>$y){
+        if($x==$room){
+            echo "$x=>$y";
+            break;
+        }
+        
+    }
+ }
+
+?>

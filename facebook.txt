@@ -1,0 +1,147 @@
+<-facebook1.html->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook</title>
+    <style>
+        body{
+            background-color: rgb(129, 129, 245);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        h1{
+            margin-left: 140px;
+        }
+        h3{
+            margin-left: 50px;
+            margin-top: 50px;
+        }
+        .container{
+            margin-top: 90px;
+            width: 400px;
+            height: 400px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 10px 10px 10px rgba(3, 3, 3, 0.6) ;
+        }
+        .container button{
+            margin-left: 165px;
+            margin-top: 30px;
+            background-color: rgb(129, 129, 245);
+            padding: 6px;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Facebook</h1><br>
+        <br>
+        <h3>Welcome to this amazing social world</h3><br>
+        <br>
+        <a href="facebook2.html"><button>Sign Up</button></a>
+    </div>
+</body>
+</html>
+
+<-facebook2.html->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <style>
+        body{
+            background-color: rgb(129, 129, 245);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .reg{
+            height: 400px;
+            width: 400px;
+            margin-top: 80px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 10px 10px 10px rgba(3, 3, 3, 0.6) ;
+
+        }
+        h2{
+            margin-left: 75px;
+        }
+        .myform{
+            margin-left: 95px;
+            margin-top: 50px;
+        }
+        .myform label{
+            display: block;
+            margin-top: 9px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .myform input[type=submit]{
+            display: block;
+            margin-top: 20px;
+        }
+    </style>
+    <script src="validation.js"></script>
+</head>
+<body>
+    <div class="reg">
+        <h2>Facebook Registration</h2>
+        <form name="myform" class="myform" onsubmit="return validateform()">
+            <label for="name">Username:</label>
+            <input type="text" name="name">
+            <label for="email">Email:</label>
+            <input type="email" name="email">
+            <label for="address">Address:</label>
+            <input type="text" name="address">
+            <label for="password">Password:</label>
+            <input type="password" name="password">
+            <input type="submit" value="Signup">
+        </form>
+    </div>
+</body>
+</html>
+
+<-validation.js->
+function validateform(){  
+    var name=document.myform.name.value;  
+    var password=document.myform.password.value;  
+	var email=document.myform.email.value;
+    var address=document.myform.address.value;
+		
+    if (name==null || name==""){  
+      alert("Name can't be blank");  
+      return false;  
+    }
+ 
+    if (email === "" || !email.includes('@')) {
+        window.alert
+        ("Please enter a valid e-mail address.");
+        email.focus();
+        return false;
+    }
+
+    if (address === "") {
+        window.alert
+        ("Please enter your address.");
+        address.focus();
+        return false;
+    }
+
+    if(password.length<6){  
+        alert("Password must be at least 6 characters long.");  
+        return false;  
+        }
+
+        alert("Registration successful!");
+        return true;
+		
+    }  
